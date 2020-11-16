@@ -1,9 +1,8 @@
 FROM node:alpine
 WORKDIR /app
 COPY . .
-RUN apk --update add nginx &&\
-    npm install -g serve &&\
-    yarn &&\
-    yarn run  build-prod
+RUN npm install -g serve &&\
+    npm install
+    ng build --prod
 WORKDIR /app/dist/logfish
 ENTRYPOINT ["/app/scripts/docker-entrypoint.sh"]
